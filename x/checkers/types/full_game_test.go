@@ -17,12 +17,12 @@ const (
 
 func GetStoredGame1() *types.StoredGame {
 	return &types.StoredGame{
-			Creator: alice,
-			Black:   bob,
-			Red:     carol,
-			Index:   "1",
-			Game:    rules.New().String(),
-			Turn:    "b",
+		Creator: alice,
+		Black:   bob,
+		Red:     carol,
+		Index:   "1",
+		Game:    rules.New().String(),
+		Turn:    "b",
 	}
 }
 
@@ -40,8 +40,8 @@ func TestGetAddressWrongCreator(t *testing.T) {
 	creator, err := storedGame.GetCreatorAddress()
 	require.Nil(t, creator)
 	require.EqualError(t,
-			err,
-			"creator address is invalid: cosmos1jmjfq0tplp9tmx4v9uemw72y4d2wa5nr3xn9d4: decoding bech32 failed: checksum failed. Expected 3xn9d3, got 3xn9d4.")
+		err,
+		"creator address is invalid: cosmos1jmjfq0tplp9tmx4v9uemw72y4d2wa5nr3xn9d4: decoding bech32 failed: checksum failed. Expected 3xn9d3, got 3xn9d4.")
 	require.EqualError(t, storedGame.Validate(), err.Error())
 }
 
