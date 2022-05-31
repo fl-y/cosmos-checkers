@@ -18,9 +18,9 @@ func setupMsgServerWithOneGameForPlayMove(t testing.TB) (types.MsgServer, keeper
 	server := keeper.NewMsgServerImpl(*k)
 	context := sdk.WrapSDKContext(ctx)
 	server.CreateGame(context, &types.MsgCreateGame{
-			Creator: alice,
-			Red:     bob,
-			Black:   carol,
+		Creator: alice,
+		Red:     bob,
+		Black:   carol,
 	})
 	return server, *k, context
 }
@@ -28,18 +28,18 @@ func setupMsgServerWithOneGameForPlayMove(t testing.TB) (types.MsgServer, keeper
 func TestPlayMove(t *testing.T) {
 	msgServer, _, context := setupMsgServerWithOneGameForPlayMove(t)
 	playMoveResponse, err := msgServer.PlayMove(context, &types.MsgPlayMove{
-			Creator: carol,
-			IdValue: "1",
-			FromX:   1,
-			FromY:   2,
-			ToX:     2,
-			ToY:     3,
+		Creator: carol,
+		IdValue: "1",
+		FromX:   1,
+		FromY:   2,
+		ToX:     2,
+		ToY:     3,
 	})
 	require.Nil(t, err)
 	require.EqualValues(t, types.MsgPlayMoveResponse{
-			IdValue:   "1",
-			CapturedX: -1,
-			CapturedY: -1,
-			Winner:    rules.NO_PLAYER.Color,
+		IdValue:   "1",
+		CapturedX: -1,
+		CapturedY: -1,
+		Winner:    rules.NO_PLAYER.Color,
 	}, *playMoveResponse)
 }
