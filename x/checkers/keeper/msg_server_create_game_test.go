@@ -20,13 +20,13 @@ const (
 func TestCreateGame(t *testing.T) {
 	msgServer, _, context := setupMsgServerCreateGame(t)
 	createResponse, err := msgServer.CreateGame(context, &types.MsgCreateGame{
-			Creator: alice,
-			Red:     bob,
-			Black:   carol,
+		Creator: alice,
+		Red:     bob,
+		Black:   carol,
 	})
 	require.Nil(t, err)
 	require.EqualValues(t, types.MsgCreateGameResponse{
-			IdValue: "1",
+		IdValue: "1",
 	}, *createResponse)
 }
 

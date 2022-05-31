@@ -11,25 +11,25 @@ import (
 
 func (k msgServer) CreateGame(goCtx context.Context, msg *types.MsgCreateGame) (*types.MsgCreateGameResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
-	
+
 	nextGame, found := k.Keeper.GetNextGame(ctx)
 	if !found {
-			panic("NextGame not found")
+		panic("NextGame not found")
 	}
 	newIndex := strconv.FormatUint(nextGame.IdValue, 10)
 	newGame := rules.New()
 	storedGame := types.StoredGame{
-			Creator: msg.Creator,
-			Index:   newIndex,
-			Game:    newGame.String(),
-			Turn:    rules.PieceStrings[newGame.Turn],
-			Red:     msg.Red,
-			Black:   msg.Black,
+		Creator: msg.Creator,
+		Index:   newIndex,
+		Game:    newGame.String(),
+		Turn:    rules.PieceStrings[newGame.Turn],
+		Red:     msg.Red,
+		Black:   msg.Black,
 	}
 
 	err := storedGame.Validate()
 	if err != nil {
-			return nil, err
+		return nil, err
 	}
 	k.Keeper.SetStoredGame(ctx, storedGame)
 	nextGame.IdValue++
