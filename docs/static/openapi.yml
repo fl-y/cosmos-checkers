@@ -116,6 +116,10 @@ paths:
                       type: string
                     afterId:
                       type: string
+                    deadline:
+                      type: string
+                    winner:
+                      type: string
               pagination:
                 type: object
                 properties:
@@ -251,6 +255,10 @@ paths:
                   beforeId:
                     type: string
                   afterId:
+                    type: string
+                  deadline:
+                    type: string
+                  winner:
                     type: string
         default:
           description: An unexpected error response.
@@ -30033,6 +30041,10 @@ definitions:
               type: string
             afterId:
               type: string
+            deadline:
+              type: string
+            winner:
+              type: string
       pagination:
         type: object
         properties:
@@ -30098,6 +30110,10 @@ definitions:
             type: string
           afterId:
             type: string
+          deadline:
+            type: string
+          winner:
+            type: string
   alice.checkers.checkers.QueryParamsResponse:
     type: object
     properties:
@@ -30126,6 +30142,10 @@ definitions:
       beforeId:
         type: string
       afterId:
+        type: string
+      deadline:
+        type: string
+      winner:
         type: string
   cosmos.base.query.v1beta1.PageRequest:
     type: object
